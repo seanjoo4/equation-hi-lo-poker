@@ -1,10 +1,12 @@
 # equation-hi-lo-poker
 
 ## How to run server
-1. source myenv/bin/activate
-2. python3 server.py
-3. go to http://localhost:3000/
-4. deactivate to kill virtual environment
+1. python3 -m venv myenv
+2. source myenv/bin/activate
+3. pip install -r requirements.txt
+4. python3 server/app.py
+5. go to http://localhost:port/
+6. deactivate to kill virtual environment
 
 ## Overview
 Based on the Korean Netflix Gameshow: The Devil's Plan. Implemented this for fun, all credit to the tv show.
