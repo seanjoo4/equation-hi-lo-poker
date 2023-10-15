@@ -33,7 +33,7 @@ class Deck:
 
 class Player:
     def __init__(self) -> None:
-        self.hand = []
+        self.hand = INITIAL_OPERANDS
         self.chips = CHIPS
     
     def add_card_to_hand(self, card: Card) -> None:

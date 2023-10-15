@@ -4,8 +4,17 @@ from ..commons.constants import NUMBER_CARDS, INITIAL_OPERANDS, COLORS, EXTRA_OP
 from game_elements import Card, Deck, Player
 from typing import List
 
-def deal_cards(players: int) ->List[Player]:
+def generate_players(players: int) -> List[Player]:
+    return [Player() for _ in range(players)]
+
+def deal_cards(deck: Deck, players: Player) ->List[Player]:
     """Initial round to deal cards to all the players."""
+    card = deck.deal()
+    # first card given should always be a number card
+    while card.value not in NUMBER_CARDS:
+        deck.add_card(deck, card)
+        card = deck.deal()
+    Player().hand.append(card)
     def draw_special(deck: Deck, player: Player) -> Card:
         card = deck.deal()
         if card.value in NUMBER_CARDS:
@@ -17,10 +26,6 @@ def deal_cards(players: int) ->List[Player]:
             while card.value not in NUMBER_CARDS:
                 card = deck.deal()
         return card
-
-
-
-    
 
 def generate_deck() -> Deck:
     """Generate the deck of cards."""
