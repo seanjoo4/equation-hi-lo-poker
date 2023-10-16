@@ -2,7 +2,7 @@
 import random
 
 from collections import deque
-from ..commons.constants import NUMBER_CARDS, INITIAL_OPERANDS, COLORS, EXTRA_OPERANDS, CHIPS, LOW, HIGH, ROUNDS
+from commons.constants import NUMBER_CARDS, INITIAL_OPERANDS, COLORS, EXTRA_OPERANDS, CHIPS, LOW, HIGH, ROUNDS
 from typing import Any, Optional, Union
 
 class Card:
@@ -10,10 +10,10 @@ class Card:
         self.value = value
         self.color = color
     
-    def __repr__(self) -> str:
+    def __str__(self) -> str:
         if self.color:
-            return f"{self.value}, {self.color}"
-        return f"{self.value}"
+            return f"{self.value} of {self.color}"
+        return str(self.value)
 
 class Deck:
     def __init__(self) -> None:
@@ -30,6 +30,10 @@ class Deck:
     def deal(deck: deque) -> Any:
         """Pop the top card on the deck."""
         return deck.popleft()
+    
+    def __str__(self) -> str:
+        return f'Deck has {len(self.cards)} cards\n{", ".join(map(str, self.cards))}'
+
 
 class Player:
     def __init__(self) -> None:
