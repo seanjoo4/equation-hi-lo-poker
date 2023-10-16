@@ -1,7 +1,7 @@
 """Utils file with all of the helper functions"""
 
-from ..commons.constants import NUMBER_CARDS, INITIAL_OPERANDS, COLORS, EXTRA_OPERANDS, CHIPS, LOW, HIGH, ROUNDS
-from game_elements import Card, Deck, Player
+from commons.constants import NUMBER_CARDS, INITIAL_OPERANDS, COLORS, EXTRA_OPERANDS, CHIPS, LOW, HIGH, ROUNDS
+from utils.game_elements import Card, Deck, Player
 from typing import List
 
 def generate_players(players: int) -> List[Player]:
@@ -31,9 +31,9 @@ def generate_deck() -> Deck:
     """Generate the deck of cards."""
     return Deck()
 
-def shuffle_deck(deck: Deck) -> None:
+def shuffle_deck(deck: Deck) -> Deck:
     """Shuffle the deck of cards."""
-    deck.shuffle()
+    return deck.shuffle()
 
 def add_card_to_deck(deck: Deck, card: Card) -> None:
     """Add card to the bottom of the deck."""
