@@ -42,5 +42,14 @@ class Player:
     def discard_card_from_hand(self, discard: Card) -> None:
         self.hand = [card for card in self.hand if card != discard]
 
+    def reset_hand(self) -> None:
+        self.hand = INITIAL_OPERANDS
+    
+    def change_chip_count(self, amount: int, win: bool) -> None:
+        if win:
+            self.chips += amount
+        else:
+            self.chips -= amount
+
     def __repr__(self) -> str:
         return f"Player's hand + chips: {self.hand}, {self.chips}"
