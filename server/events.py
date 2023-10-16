@@ -1,4 +1,5 @@
 from flask_socketio import SocketIO
+from utils.utils import generate_deck
 
 socketio = SocketIO()
 
