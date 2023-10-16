@@ -9,6 +9,11 @@ class Card:
     def __init__(self, value: Union[int, str], color: Optional[str]) -> None:
         self.value = value
         self.color = color
+
+    def __eq__(self, other) -> bool:
+        if isinstance(other, Card):
+            return self.value == other.value and self.color == other.color
+        return False
     
     def __str__(self) -> str:
         if self.color:
@@ -17,7 +22,10 @@ class Card:
 
 class Deck:
     def __init__(self) -> None:
-        self.cards = deque([Card(card, color) for card in NUMBER_CARDS + EXTRA_OPERANDS for color in COLORS])
+        self.cards = deque(
+                        [Card(card, color) for card in NUMBER_CARDS for color in COLORS] +
+                        [Card(op, None) for op in EXTRA_OPERANDS]
+                    )
 
     def shuffle(self) -> None:
         """Shuffle the deck of cards."""
@@ -35,17 +43,17 @@ class Deck:
     def __str__(self) -> str:
         return f'Deck has {len(self.cards)} cards\n{", ".join(map(str, self.cards))}'
 
-
 class Player:
     def __init__(self) -> None:
-        self.hand = INITIAL_OPERANDS
+        self.hand = [Card(op, None) for op in INITIAL_OPERANDS]
         self.chips = CHIPS
     
     def add_card_to_hand(self, card: Card) -> None:
         self.hand.append(card)
     
     def discard_card_from_hand(self, discard: Card) -> None:
-        self.hand = [card for card in self.hand if card != discard]
+        if discard in self.hand:
+            self.hand.remove(discard)
 
     def reset_hand(self) -> None:
         self.hand = INITIAL_OPERANDS
@@ -56,5 +64,6 @@ class Player:
         else:
             self.chips -= amount
 
-    def __repr__(self) -> str:
-        return f"Player's hand + chips: {self.hand}, {self.chips}"
+    def __str__(self) -> str:
+        return f"Player's hand {len(self.hand)}:  {', '.join(map(str, self.hand))}"
+
