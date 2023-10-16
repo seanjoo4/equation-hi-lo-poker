@@ -19,17 +19,18 @@ class Deck:
     def __init__(self) -> None:
         self.cards = deque([Card(card, color) for card in NUMBER_CARDS + EXTRA_OPERANDS for color in COLORS])
 
-    def shuffle(deck: deque) -> None:
+    def shuffle(self) -> None:
         """Shuffle the deck of cards."""
-        random.shuffle(deck)
+        random.shuffle(self.cards)
+        return self
 
-    def add_card(deck: deque, card: str) -> None:
+    def add_card(self, card: str) -> None:
         """Add card to the bottom of the deck."""
-        deck.append(card)
+        self.cards.append(card)
 
-    def deal(deck: deque) -> Any:
+    def deal(self) -> Any:
         """Pop the top card on the deck."""
-        return deck.popleft()
+        return self.cards.popleft()
     
     def __str__(self) -> str:
         return f'Deck has {len(self.cards)} cards\n{", ".join(map(str, self.cards))}'
