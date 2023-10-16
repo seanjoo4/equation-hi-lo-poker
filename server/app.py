@@ -11,9 +11,6 @@ app = Flask(__name__,
 @app.route('/')
 def index():
     deck = generate_deck()
-    print(str(deck))
-    deck = shuffle_deck(deck)
-    print(str(deck))
     return render_template('index.html')
 
 if __name__ == '__main__':
