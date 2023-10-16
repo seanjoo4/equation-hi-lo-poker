@@ -29,7 +29,6 @@ def deal_cards(deck: Deck, players: Player) ->List[Player]:
 
 def generate_deck() -> Deck:
     """Generate the deck of cards."""
-    print("Deck is being generated")
     return Deck()
 
 def shuffle_deck(deck: Deck) -> Deck:
@@ -38,11 +37,7 @@ def shuffle_deck(deck: Deck) -> Deck:
 
 def add_card_to_deck(deck: Deck, card: Card) -> None:
     """Add card to the bottom of the deck."""
-    deck.add(card)
-
-def deal_card(deck: Deck) -> Card:
-    """Pop the top card on the deck."""
-    return deck.deal()
+    deck.add_card(card)
 
 def discard_card_from_hands(player: Player, discard: Card) -> None:
     """Discard one card from a Player's hand"""

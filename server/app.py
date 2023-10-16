@@ -10,9 +10,10 @@ app = Flask(__name__,
 
 @app.route('/')
 def index():
-    deck = generate_deck()
+    deck = shuffle_deck(generate_deck())
+    print(str(deck))
     return render_template('index.html')
 
 if __name__ == '__main__':
     socketio.init_app(app)
-    socketio.run(app, host='128.10.2.13', port=5000, debug=True)
+    socketio.run(app, port=5000, debug=True)
