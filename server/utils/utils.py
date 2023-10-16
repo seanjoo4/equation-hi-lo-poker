@@ -29,6 +29,7 @@ def deal_cards(deck: Deck, players: Player) ->List[Player]:
 
 def generate_deck() -> Deck:
     """Generate the deck of cards."""
+    print("Deck is being generated")
     return Deck()
 
 def shuffle_deck(deck: Deck) -> Deck:
